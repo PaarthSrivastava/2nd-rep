@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Task Manager</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="container">
+    <h2>Paarth's Task Directory</h2>
+    <input type="text" id="taskInput" placeholder="Enter a task" />
+    <div id="taskList"></div>
+  </div>
+
+  <script>
+    const taskInput = document.getElementById("taskInput");
+    const taskList = document.getElementById("taskList");
+    let taskCount = 0;
+
+    taskInput.addEventListener("keypress", function(e) {
+      if (e.key === "Enter" && taskInput.value.trim() !== "") {
+        addTask(taskInput.value.trim());
+        taskInput.value = "";
+      }
+    });
+
+    function addTask(task) {
+      taskCount++;
+
+      const div = document.createElement("div");
+      div.className = "entry";
+
+      const span = document.createElement("span");
+      span.textContent = `Task ${taskCount}: ${task}`;
+
+      const editBtn = document.createElement("button");
+      editBtn.textContent = "Edit";
+      editBtn.onclick = function () {
+        const newTask = prompt("Edit task:", task);
+        if (newTask !== null && newTask.trim() !== "") {
+          span.textContent = `Task ${taskCount}: ${newTask}`;
+        }
+      };
+
+      const deleteBtn = document.createElement("button");
+      deleteBtn.textContent = "Delete";
+      deleteBtn.onclick = function () {
+        taskList.removeChild(div);
+        // Optional: reset task numbering (can be improved)
+      };
+
+      div.appendChild(span);
+      div.appendChild(editBtn);
+      div.appendChild(deleteBtn);
+
+      taskList.appendChild(div);
+    }
+  </script>
+
+</body>
+</html>
