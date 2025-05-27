@@ -1,46 +1,42 @@
-const taskInput = document.getElementById("taskInput");
-const taskList = document.getElementById("taskList");
-let taskCount = 0;
+function addEntry() {
+  const input = document.getElementById("entryInput");
+  const value = input.value.trim();
 
-taskInput.addEventListener("keypress", function(e) {
-  if (e.key === "Enter" && taskInput.value.trim() !== "") {
-    addTask(taskInput.value.trim());
-    taskInput.value = "";
-  }
-});
+  if (value === "") return;
 
-function addTask(taskText) {
-  const div = document.createElement("div");
-  div.className = "entry";
+  const entryList = document.getElementById("entriesList");
 
-  const taskNumber = ++taskCount;
+  const entryDiv = document.createElement("div");
+  entryDiv.className = "entry";
 
-  const label = document.createElement("strong");
-  label.textContent = `Task ${taskNumber}: `;
+  const entryInput = document.createElement("input");
+  entryInput.type = "text";
+  entryInput.value = value;
+  entryInput.disabled = true;
+  entryInput.className = "entry-text";
 
-  const content = document.createElement("span");
-  content.contentEditable = "true";
-  content.textContent = taskText;
-  content.className = "editable";
+  const completeBtn = document.createElement("button");
+  completeBtn.textContent = "Completed";
+  completeBtn.onclick = () => {
+    entryInput.classList.toggle("completed");
+  };
 
   const editBtn = document.createElement("button");
   editBtn.textContent = "Edit";
-  editBtn.onclick = function () {
-    content.focus();
+  editBtn.onclick = () => {
+    entryInput.disabled = !entryInput.disabled;
+    editBtn.textContent = entryInput.disabled ? "Edit" : "Save";
   };
 
   const deleteBtn = document.createElement("button");
   deleteBtn.textContent = "Delete";
-  deleteBtn.onclick = function () {
-    taskList.removeChild(div);
-    if (taskNumber === taskCount) {
-      taskCount--; // re-use deleted task number if it was last
-    }
-  };
+  deleteBtn.onclick = () => entryList.removeChild(entryDiv);
 
-  div.appendChild(label);
-  div.appendChild(content);
-  div.appendChild(editBtn);
-  div.appendChild(deleteBtn);
-  taskList.appendChild(div);
+  entryDiv.appendChild(entryInput);
+  entryDiv.appendChild(completeBtn);
+  entryDiv.appendChild(editBtn);
+  entryDiv.appendChild(deleteBtn);
+
+  entryList.appendChild(entryDiv);
+  input.value = "";
 }

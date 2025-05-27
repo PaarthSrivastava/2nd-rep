@@ -1,78 +1,87 @@
-* {
-  box-sizing: border-box;
-}
-
 body {
   margin: 0;
   padding: 0;
-  background-color: black;
+  background-color: #2e2e2e; /* Charcoal grey */
+  font-family: Arial, sans-serif;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  font-family: 'Segoe UI', sans-serif;
 }
 
 .container {
-  background: white;
+  background: #fff;
   padding: 30px;
-  border-radius: 20px;
-  width: 340px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-  text-align: center;
+  border-radius: 10px;
+  width: 400px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
 
-.container h2 {
-  margin-top: 0;
+.input-section {
+  display: flex;
+  gap: 10px;
   margin-bottom: 20px;
-  color: #333;
-  font-weight: bold;
 }
 
-input[type="text"] {
-  width: 100%;
-  padding: 12px 15px;
-  font-size: 16px;
-  margin-bottom: 20px;
-  border: 2px solid #ccc;
-  border-radius: 12px;
-  outline: none;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+.input-section input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
-input[type="text"]:focus {
-  border-color: #28a745;
-  box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
+.input-section button {
+  padding: 10px 15px;
+  border: none;
+  background-color: #333;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.entries {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .entry {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px 0;
-  border-bottom: 1px solid #e0e0e0;
+  background: #f1f1f1;
+  padding: 10px;
+  border-radius: 5px;
 }
 
-.entry span {
-  flex-grow: 1;
-  text-align: left;
-  font-weight: 500;
-  color: #333;
+.entry input {
+  border: none;
+  background: transparent;
+  flex: 1;
+  margin-right: 10px;
 }
 
 .entry button {
-  padding: 6px 10px;
   margin-left: 5px;
-  font-size: 14px;
+  padding: 5px 10px;
   border: none;
-  border-radius: 6px;
+  background-color: #444;
+  color: white;
+  border-radius: 4px;
   cursor: pointer;
-  background-color: #f0f0f0;
-  transition: background-color 0.3s;
+}
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.entry button:hover {
-  background-color: #d4d4d4;
+.title {
+  color: white;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+.entry-text.completed {
+  text-decoration: line-through;
+  color: gray;
 }
